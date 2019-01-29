@@ -31,33 +31,6 @@ public class Interface_Presence extends Thread
 			e.printStackTrace();
 		}
 	}
-	
-/*	// Methode pour la deconnexion
-	//TODO: A REFAIRE AVEC ADRESSE MACHINE ET NOUVEAU TYPE MESSAGE
-	public void close_UDP()
-	{
-		try
-		{
-			// creation du message à envoyer
-			byte[] message = message_envoi_etat() ;
-			
-			// parcours des ports de 5000 à 5050
-			// envoi du coucou EN UDP
-			for (int i=5000;i<5050;i++)
-			{
-				DatagramPacket sonde = new DatagramPacket(message,message.length,InetAddress.getByName("255.255.255.255"),i);
-				socket.send(sonde) ;
-			}
-			
-			// fermeture du socket
-			this.socket.close();
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-	}
-*/	
 
 	// -------------- Methodes de création de message Presence
 

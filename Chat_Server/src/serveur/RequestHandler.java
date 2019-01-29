@@ -40,6 +40,7 @@ public class RequestHandler extends Thread
 		{
 			//recupere le user
 			Contact user = (Contact)m.getContenu() ;
+			user.setAdresse(socket.getInetAddress().getHostAddress());
 			//on met a jour la liste de contact
 			liste_contacts.ajouteContact(user);		
 			// on lui répond en lui envoyant la liste des contacts 
@@ -52,6 +53,7 @@ public class RequestHandler extends Thread
 		{
 			//recupere le user
 			Contact user = (Contact)m.getContenu() ;
+			user.setAdresse(socket.getInetAddress().getHostAddress());
 			//on met a jour la liste de contact
 			liste_contacts.ajouteContact(user);		
 			// on broadcast le contact
