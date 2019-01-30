@@ -38,6 +38,12 @@ public class Application
 		// Fermeture UDP
 		//presence.close_UDP() ;
 		
+		deconnexionSansServ(user_local,TCP,liste_conv);
+	}
+	
+	public static void deconnexionSansServ(Contact user_local,Interface_TCP TCP, ConversationList liste_conv)
+	{
+		
 		// Fermeture TCP
 		TCP.close_TCP();
 		
@@ -103,7 +109,7 @@ public class Application
 			//////////////////////
 			
 			Interface_TCP TCP = new Interface_TCP(user_local,liste_contacts,liste_conv);
-			Interface_Presence presence = new Interface_Presence(user_local,liste_contacts,param.getServeur(), param.getPortserv());			
+			Interface_Presence presence = new Interface_Presence(user_local,liste_contacts,param.getServeur(), param.getPortserv(),liste_conv,TCP);			
 			GUI_Accueil gui_a = new GUI_Accueil(user_local,liste_contacts,TCP,presence,liste_conv,param);
 			gui_a.start();
 

@@ -1,7 +1,10 @@
 package client;
 import java.io.OutputStream;
+import java.net.ConnectException;
 import java.net.ServerSocket;
 import java.net.Socket;
+
+import javax.swing.JOptionPane;
 
 import common.*;
 
@@ -13,14 +16,18 @@ public class Interface_Presence extends Thread
 	private ServerSocket socket_serv ;
 	private String adresse_server ;
 	private int port_server ;
+	private ConversationList liste_conv;
+	private Interface_TCP TCP;
 	
 	// Constructeur
-	public Interface_Presence (Contact user_local,ContactsList liste_contacts, String adresse_server, int port_server)
+	public Interface_Presence (Contact user_local,ContactsList liste_contacts, String adresse_server, int port_server,ConversationList liste_conv, Interface_TCP TCP)
 	{
 		this.user_local=user_local;
 		this.liste_contacts=liste_contacts;
 		this.adresse_server = adresse_server ;
 		this.port_server = port_server ;
+		this.liste_conv = liste_conv;
+		this.TCP = TCP;
 		
 		try
 		{
@@ -59,6 +66,11 @@ public class Interface_Presence extends Thread
 			os.write(b);
 			os.flush();
 			s.close();
+		}
+		catch(ConnectException e) {
+			JOptionPane.showMessageDialog(null, "Impossible de se connecter au serveur, peut-etre celui-ci est deconnecte, ou les parametres ne sont pas les bons. Le programme va se fermer.");
+			Application.deconnexionSansServ(user_local, TCP, liste_conv);
+			java.lang.System.exit(0);
 		}
 		catch(Exception e){
 			e.printStackTrace();
