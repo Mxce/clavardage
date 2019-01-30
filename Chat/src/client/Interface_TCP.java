@@ -23,6 +23,7 @@ public class Interface_TCP extends Thread
 		try
 		{
 			this.socket_serv = new ServerSocket(user_local.getPort_TCP());
+			//this.user_local.setAdresse(this.socket_serv.getInetAddress().getHostAddress());
 		}
 		catch (Exception e)
 		{

@@ -205,16 +205,23 @@ public class GUI extends Thread
 	{
 		if (conv_select)
 		{
+			if (this.conv_actuelle.getUser2().getConnecte()) {
 			this.conv_actuelle.envoyer_message(zone_message.getText());
+			zone_conversation.setText(conv_actuelle.toString());
+			}
 		}
 		else
 		{
 			int i = zone_liste.getSelectedIndex();
-			this.conv_actuelle = liste_conv.creer_conv_et_envoyer_message(zone_message.getText(),liste_contacts.getListe().get(i),user_local );
+			Contact userdest = liste_contacts.getListe().get(i);
+			if (userdest.getConnecte()) {
+			this.conv_actuelle = liste_conv.creer_conv_et_envoyer_message(zone_message.getText(),userdest,user_local );
 			conv_select=true;
+			zone_conversation.setText(conv_actuelle.toString());
+			}
 		}
 		
-		zone_conversation.setText(conv_actuelle.toString());
+
 		
 	}
 	private void action_bouton_deco()

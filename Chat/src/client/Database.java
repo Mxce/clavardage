@@ -12,7 +12,7 @@ public class Database
 {
 	
 	private static void createDir(){
-		new File(System.getProperty("user.dir") + "\\ConvDB").mkdirs();
+		new File(System.getProperty("user.dir") + File.separator + "ConvDB").mkdirs();
 	}
 	
 	public static void save_conv(Conversation conv, boolean recu) 
@@ -21,7 +21,7 @@ public class Database
 		try
 		{
 			// identification de la conv à stocker
-			String path = System.getProperty("user.dir") + "\\ConvDB\\" + conv.getUser2().getMachine();
+			String path = System.getProperty("user.dir") + File.separator + "ConvDB"+ File.separator + conv.getUser2().getMachine();
 			
 			// ecriture du message dans le fichier associé a la conv
 			FileOutputStream fileOut = new FileOutputStream(path);
@@ -41,7 +41,7 @@ public class Database
 		try
 		{
 			// identification de la conv à stocker
-			String path = System.getProperty("user.dir") + "\\_param";
+			String path = System.getProperty("user.dir") + File.separator + "_param";
 			
 			// ecriture du message dans le fichier associé a la conv
 			FileOutputStream fileOut = new FileOutputStream(path);
@@ -59,7 +59,7 @@ public class Database
 	
 	public static Parametres getParametresSaved(){
 		try{
-			return (Parametres)getObjectSaved(System.getProperty("user.dir") + "\\_param");
+			return (Parametres)getObjectSaved(System.getProperty("user.dir")  + File.separator + "_param");
 
 		}
 		catch(Exception e){
@@ -77,7 +77,7 @@ public static ArrayList<Message> getMessagesSaved(Contact c )
 
 		try{
 			@SuppressWarnings("unchecked")
-			ArrayList<Message> liste_mess = (ArrayList<Message>)getObjectSaved( System.getProperty("user.dir") + "\\ConvDB\\" + c.getMachine());
+			ArrayList<Message> liste_mess = (ArrayList<Message>)getObjectSaved( System.getProperty("user.dir") + File.separator + "ConvDB" + File.separator + c.getMachine());
 			if (liste_mess == null){
 				return new ArrayList<Message>();
 			}

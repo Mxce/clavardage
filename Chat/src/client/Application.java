@@ -81,7 +81,7 @@ public class Application
 			}
 			else{
 				//Demande infos a l'utilisateur
-				JOptionPane.showMessageDialog(null, "Aucun fichier de parametre trouvé, parametrage prealable necessaire");
+				JOptionPane.showMessageDialog(null, "Aucun fichier de parametre trouvï¿½, parametrage prealable necessaire");
 				String adserv = (String)JOptionPane.showInputDialog(null,"Veuillez entrer l'adresse du serveur de presence: ", "Customized Dialog",JOptionPane.PLAIN_MESSAGE,null,null,"");
 				int port = 0;
 				boolean loop = true;
@@ -109,6 +109,7 @@ public class Application
 			//////////////////////
 			
 			Interface_TCP TCP = new Interface_TCP(user_local,liste_contacts,liste_conv);
+			
 			Interface_Presence presence = new Interface_Presence(user_local,liste_contacts,param.getServeur(), param.getPortserv(),liste_conv,TCP);			
 			GUI_Accueil gui_a = new GUI_Accueil(user_local,liste_contacts,TCP,presence,liste_conv,param);
 			gui_a.start();
